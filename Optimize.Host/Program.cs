@@ -29,5 +29,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.MapPost("/ping",  (string text) => Results.Ok($"Pong: {text}"));
+app.MapGet("/ping" , () => Results.Ok("Pong"));
 app.Run();
