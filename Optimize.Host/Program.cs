@@ -29,6 +29,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/ping",  (string text) => Results.Ok($"Pong: {text}"));
+app.MapPost("/ping",  (string text) =>
+{
+    if(string.IsNullOrWhiteSpace(text))
+    {
+        throw new Exception("Text cannot be empty");
+    }
+    return Results.Ok($"Pong: {text}");
+});
 app.MapGet("/ping" , () => Results.Ok("Pong"));
 app.Run();
